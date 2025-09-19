@@ -40,14 +40,21 @@ function addTask(e){
     }   
 function renderTask(display){
     let entry = document.querySelector('#entry')
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 4d9782d74248b6c6184acaef72c5906f412a976d
     entry.innerHTML = ""; // prevents duplication
 
     //displaying entries dynamically
     for(let i = 0; i<display.length; i++){
         let entryDiv = document.createElement("div")
         entryDiv.setAttribute("class",'task')
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4d9782d74248b6c6184acaef72c5906f412a976d
         let data = Object.entries(display[i])
         data.forEach(([key,value])=>{
             let entryContent = document.createElement("p")
@@ -55,6 +62,7 @@ function renderTask(display){
             entryContent.textContent = value
             entryDiv.append(entryContent)
         })
+<<<<<<< HEAD
         
         let removeTask = document.createElement('button')
         removeTask.addEventListener("click", remove)
@@ -80,6 +88,13 @@ function renderTask(display){
 
 
 
+=======
+        entry.append(entryDiv)
+    }
+}
+
+
+>>>>>>> 4d9782d74248b6c6184acaef72c5906f412a976d
 //reset input fields
 function reset(){
     let taskFields = document.getElementById("task")
