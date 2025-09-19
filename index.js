@@ -1,5 +1,4 @@
 document.getElementById("myForm").addEventListener("submit", addTask)
-let mylibrary =[]
 class CreateObject {
     constructor(newTask, newDate, newTime){
         this.TASK = newTask;
@@ -7,7 +6,20 @@ class CreateObject {
         this.TIME = newTime;
     }
 }
+let mylibrary = JSON.parse(localStorage.getItem('task'))
 
+//so that display does not reset after page is refreshed
+window.addEventListener("DOMContentLoaded", pageLoad)
+function pageLoad(){
+
+    let displayOLD = localStorage.getItem("task") 
+    ? JSON.parse(localStorage.getItem("task")) 
+    : [];
+    renderTask(displayOLD)
+    mylibrary = displayOLD;
+}
+
+//button to add new task
 function addTask(e){
     e.preventDefault();
     let newTask = document.getElementById("task").value
@@ -18,31 +30,41 @@ function addTask(e){
     mylibrary.push(newEntry) //test
     console.table(mylibrary) //test
     
-    localStorage.setItem("task", JSON.stringify(newEntry));
+    localStorage.setItem("task", JSON.stringify(mylibrary));
     let display = JSON.parse(localStorage.getItem("task"))
+    // console.log(display)
 
+    renderTask(display)
+    reset()
+
+    }   
+function renderTask(display){
     let entry = document.querySelector('#entry')
-    let entryDiv = document.createElement("div")
-    entryDiv.setAttribute("id",'task1')
+
+    entry.innerHTML = ""; // prevents duplication
 
     //displaying entries dynamically
-    let data = Object.entries(display)
-    for(i = 0; i<data.length; i++){
-        let entryContent = document.createElement("p")
-        entryContent.setAttribute("class", data[i][0])
-        entryContent.textContent += data[i][1]
-        entryDiv.append(entryContent)
+    for(let i = 0; i<display.length; i++){
+        let entryDiv = document.createElement("div")
+        entryDiv.setAttribute("class",'task')
+        let data = Object.entries(display[i])
+        data.forEach(([key,value])=>{
+            let entryContent = document.createElement("p")
+            entryContent.setAttribute("class", key)
+            entryContent.textContent = value
+            entryDiv.append(entryContent)
+        })
+        entry.append(entryDiv)
     }
-    
-    
-    entry.append(entryDiv)
+}
 
 
-    console.log(data[0][1])
-    
-    //why localStorage gets replaced everytime?
-    //when refresh the data should be saved
-
-
-    //need to use localStorage.key() later to loop through different task entries
+//reset input fields
+function reset(){
+    let taskFields = document.getElementById("task")
+    let dateFields = document.getElementById("date")
+    let timeFields = document.getElementById("time")
+    taskFields.value =""
+    dateFields.value =""
+    timeFields.value =""
 }
