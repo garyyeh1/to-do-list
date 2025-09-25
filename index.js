@@ -61,13 +61,13 @@ function renderTask(display){
 
         })
 
+        toggleCompleted(i, entryDiv, completedParagraph, display[i])
 
         let removeTask = document.createElement('button')
         removeTask.addEventListener("click", remove)
         removeTask.textContent = "Delete task"
         entryDiv.append(removeTask)
 
-        toggleCompleted(i, entryDiv, completedParagraph, display[i])
 
 
 
@@ -146,3 +146,27 @@ function toggleCompleted(i, entryDiv, completedParagraph, task){
         }
     }
 }
+
+const app = Vue.createApp({
+    data(){
+        return{
+            selection: ''
+            filtered: ''
+        }
+    },methods: {
+        filtering(){
+            if (selection === 'Completed'){
+
+            }else if (selection === "Active"){
+                
+            }else{
+                
+            }
+            
+        }
+
+
+    }
+})
+
+app.mount('#app')
