@@ -18,6 +18,7 @@ function pageLoad(){
     : [];
     renderTask(displayOLD)
     mylibrary = displayOLD;
+    vm.refreshTask()
 }
 
 //button to add new task
@@ -35,6 +36,7 @@ function addTask(e){
     
     localStorage.setItem("task", JSON.stringify(mylibrary));
     renderTask(mylibrary)
+    vm.refreshTask()
     reset()
 
     }   
@@ -78,6 +80,7 @@ function renderTask(display){
             localStorage.setItem("task", JSON.stringify(mylibrary));
         
             renderTask(display)
+            vm.refreshTask()
         }
 
         entry.append(entryDiv)
@@ -144,25 +147,34 @@ function toggleCompleted(i, entryDiv, completedParagraph, task){
             //test
             console.log("unchecked")
         }
+        vm.refreshTask()
     }
 }
 
 const app = Vue.createApp({
     data(){
         return{
-            selection: ''
+            selection: '',
+            tasks: []
         }
+    }, methods:{
+        refreshTask(){
+            this.tasks = JSON.parse(localStorage.getItem("task"))
+        }
+
+
     },computed: {
         filtering(){
-            let library = JSON.parse(localStorage.getItem("task"))
             if (this.selection === 'Completed'){
-                return library.filter(task=> task.COMPLETED === true)
+                return this.tasks.filter(task=> task.COMPLETED === true)
 
             }else if (this.selection === "Active"){
-                return library.filter(task=> task.COMPLETED === false)
+                return this.tasks.filter(task=> task.COMPLETED === false)
 
+            }else if (this.selection === ""){
+                return []
             }else{
-                return library
+                return this.tasks
             }
             
         }
@@ -171,4 +183,4 @@ const app = Vue.createApp({
     }
 })
 
-app.mount('#vue-app')
+const vm = app.mount('#vue-app')

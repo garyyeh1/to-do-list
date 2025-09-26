@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>To-Do List</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
 </head>
 <body>
     <form id="myForm">
-        <header>To-Do List</header>
+        <h1>To-Do List</h1>
         <input placeholder="Add your task here" id="task" required>
         <input type="date" id="date">
         <input type="time" id="time">
@@ -22,13 +22,14 @@
 
     <hr>
     <div id="vue-app">
-
+        
         <select v-model = selection>
+
             <option value="">Filter Tasks</option>
             <option value="All">All</option>
             <option value="Active" >Active </option>
             <option value="Completed">Completed</option>
-
+            
         </select>
 
         <ul v-for="task in filtering">
@@ -38,7 +39,7 @@
             </ul>
                 
         </ul>
-    
+        <p>[Powered by VueJS]</p>
     </div>
 
 </body>
