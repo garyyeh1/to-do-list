@@ -151,16 +151,18 @@ const app = Vue.createApp({
     data(){
         return{
             selection: ''
-            filtered: ''
         }
-    },methods: {
+    },computed: {
         filtering(){
-            if (selection === 'Completed'){
+            let library = JSON.parse(localStorage.getItem("task"))
+            if (this.selection === 'Completed'){
+                return library.filter(task=> task.COMPLETED === true)
 
-            }else if (selection === "Active"){
-                
+            }else if (this.selection === "Active"){
+                return library.filter(task=> task.COMPLETED === false)
+
             }else{
-                
+                return library
             }
             
         }
@@ -169,4 +171,4 @@ const app = Vue.createApp({
     }
 })
 
-app.mount('#app')
+app.mount('#vue-app')

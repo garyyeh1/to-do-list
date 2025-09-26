@@ -15,16 +15,31 @@
         <input type="time" id="time">
         <label>Completed? <input type="checkbox" id="completed"></label>
         <label><button id="submit">Add Task</button></label>
-        <select v-model = selection>
-            <option value="">Filter Tasks</option>
-            <option value="All">All</option>
-            <option value="Active" @click="title = 'something else'">Active </option>
-            <option value="Completed">Completed</option>
 
-        </select>
     </form>
 
     <div id="entry"></div>
+
+    <hr>
+    <div id="vue-app">
+
+        <select v-model = selection>
+            <option value="">Filter Tasks</option>
+            <option value="All">All</option>
+            <option value="Active" >Active </option>
+            <option value="Completed">Completed</option>
+
+        </select>
+
+        <ul v-for="task in filtering">
+            <li > Task Name: {{task.TASK}} </li>
+            <ul>
+                <li> Status: {{task.COMPLETED ? 'Completed': 'Incomplete'}}</li>
+            </ul>
+                
+        </ul>
+    
+    </div>
 
 </body>
 <script src ='index.js'></script>
