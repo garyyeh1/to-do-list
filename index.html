@@ -4,17 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do List</title>
+    <link href='https://fonts.googleapis.com/css?family=Schibsted Grotesk' rel='stylesheet'>
+    <link rel = "stylesheet" href="style.css">
+    
+
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
 </head>
 <body>
     <form id="myForm">
-        <h1>To-Do List</h1>
-        <input placeholder="Add your task here" id="task" required>
-        <input type="date" id="date">
-        <input type="time" id="time">
-        <label>Completed? <input type="checkbox" id="completed"></label>
-        <label><button id="submit">Add Task</button></label>
+        <div class = "container">
+            <h1>To-Do List</h1>
+            <div class = inputSection>
+                <input placeholder="Add your task here" id="task" required>
+                <input type="date" id="date">
+                <input type="time" id="time">
+                <div id = "smallContainer">
+                    <label>Completed? </label>
+                    <input type="checkbox" id="completed">
+                </div>
+                <label><button id="submit">Add Task</button></label>
+            </div>
+        </div>
 
     </form>
 
